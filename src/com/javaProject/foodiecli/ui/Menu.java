@@ -106,16 +106,22 @@ public class Menu {
         CustomerController customerController = Factory.getCustomerController();
         try {
             Customer savedcustomer = customerController.save(customer);
-            System.out.println("Customer Registration SuccessFul");
-            System.out.println("Details");
-            System.out.println("Id : "+ customer.getCustomerId());
-            System.out.println("Name : " + customer.getCustomerName());
-            System.out.println("E-mail : " + customer.getEmail() );
-            System.out.println("Password : " + customer.getPassword());
-        }
-        catch (CustomerExistsException e){
+            if (savedcustomer != null) {
+                System.out.println("Customer Registration SuccessFul");
+                System.out.println("Details");
+                System.out.println("Id : " + customer.getCustomerId());
+                System.out.println("Name : " + customer.getCustomerName());
+                System.out.println("E-mail : " + customer.getEmail());
+                System.out.println("Password : " + customer.getPassword());
+            } else {
+                System.out.println("some internal error occured ,PLEASE TRY AGAIN");
+                displayRegisterMenu();
+            }
+        } catch (CustomerExistsException e) {
             System.out.println(e.getMessage());
+            System.out.println("please login main menu");
+            displayMainMenu();
         }
     }
-}
+    }
 
