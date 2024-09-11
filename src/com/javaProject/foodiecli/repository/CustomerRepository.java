@@ -4,6 +4,7 @@ import com.javaProject.foodiecli.Model.Customer;
 import com.javaProject.foodiecli.util.CsvReader;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerRepository {
    private List<Customer> customersList;
@@ -21,4 +22,5 @@ public class CustomerRepository {
         this.customersList.add(customer);
         return customer;
     }
+
 }
