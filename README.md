@@ -12,7 +12,7 @@ The Foodie CLI Application is a Java-based command-line interface (CLI) applicat
 ## Installation
 To install and run the Restaurant CLI Application, follow these steps:
 
-1. **Clone the repository**
+1. **Clone the com.javaProject.foodiecli.repository**
    ```bash
    git clone https://github.com/Vinodambarapu267/foodie-cli-java.git
     ```

@@ -1,4 +1,4 @@
-package model;
+package com.javaProject.foodiecli.Model;
 
 import java.time.LocalDate;
 import java.util.List;

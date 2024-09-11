@@ -1,4 +1,4 @@
-package model;
+package com.javaProject.foodiecli.Model;
 
 import java.util.Objects;
 
