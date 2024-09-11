@@ -5,6 +5,7 @@ import com.javaProject.foodiecli.Model.Customer;
 import com.javaProject.foodiecli.exceptions.CustomerExistsException;
 import com.javaProject.foodiecli.repository.CustomerRepository;
 import com.javaProject.foodiecli.service.CustomerServiceimpl;
+import com.javaProject.foodiecli.util.Factory;
 
 import java.util.Scanner;
 
@@ -99,9 +100,10 @@ public class Menu {
                 .setCustomerName(name)
                 .setEmail(email)
                 .setPassword(password);
-        CustomerRepository customerRepository = new CustomerRepository();
-        CustomerServiceimpl customerservice = new CustomerServiceimpl(customerRepository);
-        CustomerController customerController = new CustomerController(customerservice);
+//        CustomerRepository customerRepository = new CustomerRepository();
+//        CustomerServiceimpl customerservice = new CustomerServiceimpl(customerRepository);
+//        CustomerController customerController = new CustomerController(customerservice);
+        CustomerController customerController = Factory.getCustomerController();
         try {
             Customer savedcustomer = customerController.save(customer);
             System.out.println("Customer Registration SuccessFul");
