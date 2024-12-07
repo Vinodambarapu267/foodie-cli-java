@@ -9,7 +9,7 @@ import com.javaProject.foodiecli.util.Factory;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerMenu {
+public class CustomerMenu extends Menu{
     private final CustomerController customerController;
 
     public CustomerMenu() {
@@ -63,7 +63,7 @@ public class CustomerMenu {
             System.out.println("Please enter the following details to delete the Customer\n");
             System.out.println("Enter Id");
             String id = scanner.nextLine();
-            customerController.deletecustomer(id);
+            customerController.deleteCustomer(id);
             System.out.println("Customer Deleted Successfully");
         } catch (CustomerNotFoundException e) {
             System.out.println(e.getMessage());
@@ -109,7 +109,7 @@ public class CustomerMenu {
         System.out.printf("%-10s %-30s %-80s %-30s\n", "Id", "Name", "E-mail", "Password");
         System.out.println(dashesLine);
         customersList.forEach(customer -> {
-            System.out.printf("%-10s %-30s %-80s %-30s\n", customer.getId(), customer.getName(), customer.getEmail(), "*".repeat(customer.getPassword().length()));
+            System.out.printf("%-10s %-30s %-80s %-30s\n", customer.getCustomerId(), customer.getCustomerName(), customer.getEmail(), "*".repeat(customer.getPassword().length()));
         });
     }
 
