@@ -2,12 +2,15 @@ package com.javaProject.foodiecli.util;
 
 import com.javaProject.foodiecli.Controller.CustomerController;
 import com.javaProject.foodiecli.Controller.DishController;
+import com.javaProject.foodiecli.Controller.OrderController;
 import com.javaProject.foodiecli.Controller.RestaurantController;
 import com.javaProject.foodiecli.repository.CustomerRepository;
 import com.javaProject.foodiecli.repository.DishRepository;
+import com.javaProject.foodiecli.repository.OrderRepository;
 import com.javaProject.foodiecli.repository.RestaurantsRepository;
 import com.javaProject.foodiecli.service.CustomerServiceImpl;
 import com.javaProject.foodiecli.service.DishServiceImpl;
+import com.javaProject.foodiecli.service.OrderServiceImpl;
 import com.javaProject.foodiecli.service.RestaurantServiceImpl;
 
 public class Factory {
@@ -50,6 +53,18 @@ public class Factory {
         return Holder.RESTAURANT_CONTROLLER;
     }
 
+    public static OrderRepository getOrderRepository() {
+        return Holder.ORDER_REPOSITORY;
+    }
+
+    public static OrderServiceImpl getOrderService() {
+        return Holder.ORDER_SERVICE;
+    }
+
+    public static OrderController getOrderController() {
+        return Holder.ORDER_CONTROLLER;
+    }
+
     private static class Holder{
         private static final CsvReader CSV_READER = new CsvReader();
 
@@ -65,6 +80,9 @@ public class Factory {
         private static final RestaurantServiceImpl RESTAURANT_SERVICE = new RestaurantServiceImpl(RESTAURANT_REPOSITORY);
         private static final RestaurantController RESTAURANT_CONTROLLER = new RestaurantController(RESTAURANT_SERVICE);
 
+        private static final OrderRepository ORDER_REPOSITORY = new OrderRepository();
+        private static final OrderServiceImpl ORDER_SERVICE = new OrderServiceImpl(ORDER_REPOSITORY);
+        private static final OrderController ORDER_CONTROLLER = new OrderController(ORDER_SERVICE);
 
     }
 
