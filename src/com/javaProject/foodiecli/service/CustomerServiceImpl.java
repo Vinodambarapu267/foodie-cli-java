@@ -6,10 +6,10 @@ import com.javaProject.foodiecli.repository.CustomerRepository;
 
 import java.util.Optional;
 
-public class CustomerServiceimpl implements CustomerService {
+public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
-    public CustomerServiceimpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -18,6 +18,6 @@ public class CustomerServiceimpl implements CustomerService {
         Optional<Customer> customerById = this.customerRepository.findCustomerById(customer.getCustomerId());
         if (customerById.isPresent())
         throw new CustomerExistsException("CUSTOMER IS ALREADY EXISTS WITH THIS ID :" + customer.getCustomerId());
-        return this.customerRepository.save(customer);
+        return this.customerRepository.saveCustomer(customer);
     }
 }
