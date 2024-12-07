@@ -1,7 +1,7 @@
 package com.javaProject.foodiecli.repository;
 
 import com.javaProject.foodiecli.Model.Restaurant;
-import com.javaProject.foodiecli.util.CsvReader;
+import com.javaProject.foodiecli.util.Factory;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import java.util.Optional;
 public class RestaurantsRepository {
     private List<Restaurant> restaurantList;
 
-    public RestaurantRepository() {
+    public RestaurantsRepository() {
         this.restaurantList = Factory.getCsvReader().readRestaurantsFromCsv();
     }
 
@@ -34,7 +34,6 @@ public class RestaurantsRepository {
                 });
         return restaurantOptional.orElse(null);
     }
-
     public void deleteRestaurant(Restaurant restaurant){
         this.restaurantList.remove(restaurant);
     }

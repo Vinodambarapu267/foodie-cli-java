@@ -14,6 +14,6 @@ public class Main {
 //        RestaurantsRepository restaurantsRepository = new RestaurantsRepository();
 //        System.out.println(restaurantsRepository.getRestaurantList());
         Menu menu = new Menu();
-        menu.displayMainMenu();
+        menu.displayMenu();
     }
 }
