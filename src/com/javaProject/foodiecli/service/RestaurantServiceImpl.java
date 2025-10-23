@@ -26,9 +26,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant save(Restaurant restaurant) throws RestaurantExistsException {
-        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurantById(restaurant.getId());
+        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurantById(restaurant.getResturantId());
         if(restaurantById.isPresent())
-            throw new RestaurantExistsException("Restaurant Already Exists with this Id  :" + restaurant.getId());
+            throw new RestaurantExistsException("Restaurant Already Exists with this Id  :" + restaurant.getResturantId());
         return this.restaurantRepository.save(restaurant);
     }
 
@@ -43,10 +43,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant updateRestaurant(Restaurant restaurant) throws RestaurantNotFoundException {
-        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurantById(restaurant.getId());
+        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurantById(restaurant.getResturantId());
         if(restaurantById.isEmpty())
-            throw new RestaurantNotFoundException("Restaurant Not Found with this Id  :" + restaurant.getId());
-        return this.restaurantRepository.updateRetaurant(restaurant);
+            throw new RestaurantNotFoundException("Restaurant Not Found with this Id  :" + restaurant.getResturantId());
+        return this.restaurantRepository.updateRestaurant(restaurantById.get());
     }
 
 

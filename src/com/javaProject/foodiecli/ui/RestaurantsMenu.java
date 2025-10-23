@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class RestaurantsMenu extends Menu{
 
-    private RestaurantController restaurantController;
+    private final RestaurantController restaurantController;
 
     public RestaurantsMenu() {
         this.restaurantController = Factory.getRestaurantController();
@@ -59,6 +59,32 @@ public class RestaurantsMenu extends Menu{
             displayMenu();
         }
     }
+    public void newRestaurantForm() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter the following details\n");
+            System.out.println("Enter Id");
+            String id = scanner.nextLine();
+            System.out.println("Enter Name");
+            String name = scanner.nextLine();
+            System.out.println("Enter Address");
+            String address = scanner.nextLine();
+            System.out.println("Enter Dishes for Menu separated by : (D010:D009)");
+            String menu = scanner.nextLine();
+            Restaurant restaurant = new Restaurant();
+            restaurant.setResturantId(id)
+                    .setResturantName(name)
+                    .setAddress(address)
+                    .setMenu(Arrays.asList(menu.split(":")));
+            Restaurant savedRestaurant = restaurantController.saveRestaurant(restaurant);
+            displayRestaurant(savedRestaurant);
+        } catch (RestaurantExistsException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Some internal error occurred. Please try again !");
+            newRestaurantForm();
+        }
+    }
 
     public void restaurantDeleteForm() {
         try {
@@ -87,10 +113,11 @@ public class RestaurantsMenu extends Menu{
             System.out.println("Enter Menu Dish Items separated by : (D101:D102)");
             String menu = scanner.nextLine();
             Restaurant restaurant = new Restaurant();
-            restaurant.setName(name)
+            restaurant
+                    .setResturantId(id)
+                    .setResturantName(name)
                     .setAddress(address)
                     .setMenu(Arrays.asList(menu.split(":")));
-
             Restaurant updatedRestaurant = restaurantController.updateRestaurant(restaurant);
             System.out.println("Restaurant Updated Successfully");
             displayRestaurant(updatedRestaurant);
@@ -117,32 +144,7 @@ public class RestaurantsMenu extends Menu{
         }
     }
 
-    public void newRestaurantForm() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Please enter the following details\n");
-            System.out.println("Enter Id");
-            String id = scanner.nextLine();
-            System.out.println("Enter Name");
-            String name = scanner.nextLine();
-            System.out.println("Enter Address");
-            String address = scanner.nextLine();
-            System.out.println("Enter Dishes for Menu separated by : (D010:D009)");
-            String menu = scanner.nextLine();
-            Restaurant restaurant = new Restaurant();
-            restaurant.setId(id)
-                    .setName(name)
-                    .setAddress(address)
-                    .setMenu(Arrays.asList(menu.split(":")));
-            Restaurant savedRestaurant = restaurantController.saveRestaurant(restaurant);
-            displayRestaurant(savedRestaurant);
-        } catch (RestaurantExistsException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Some internal error occurred. Please try again !");
-            newRestaurantForm();
-        }
-    }
+
 
 
     public void displayRestaurants() {
@@ -151,7 +153,7 @@ public class RestaurantsMenu extends Menu{
         System.out.printf("%-10s %-30s %-80s %-30s\n", "Id", "Name", "Address", "Menu Items");
         printDashLine();
         restaurantList.forEach(restaurant -> {
-            System.out.printf("%-10s %-30s %-80s %-30s\n", restaurant.getId(), restaurant.getName(), restaurant.getAddress(), String.join(":", restaurant.getMenu()));
+            System.out.printf("%-10s %-30s %-80s %-30s\n", restaurant.getResturantId(), restaurant.getResturantName(), restaurant.getAddress(), String.join(":", restaurant.getMenu()));
         });
     }
 
@@ -159,7 +161,7 @@ public class RestaurantsMenu extends Menu{
         displayMenuHeader("Restaurant Details");
         System.out.printf("%-10s %-30s %-80s %-30s\n", "Id", "Name", "Address", "Menu Items");
         printDashLine();
-        System.out.printf("%-10s %-30s %-80s %-30s\n", restaurant.getId(), restaurant.getName(), restaurant.getAddress(), String.join(":", restaurant.getMenu()));
+        System.out.printf("%-10s %-30s %-80s %-30s\n", restaurant.getResturantId(), restaurant.getResturantName(), restaurant.getAddress(), String.join(":", restaurant.getMenu()));
     }
 
     public void displayMenuItems(String restaurantId) throws RestaurantNotFoundException, DishNotFoundException {

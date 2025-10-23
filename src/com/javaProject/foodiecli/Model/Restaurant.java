@@ -9,7 +9,7 @@ public class Restaurant {
     --------------------------------------
     Datatype                  variable
     --------------------------------------
-    String                      id
+    String                      resturantId
     String                      name
     String                      address
     List<Dish>                  menu
@@ -23,29 +23,29 @@ public class Restaurant {
     5. Override toString() methods
      */
 
-    private String id;
+    private String resturantId;
     private String name;
     private String address;
-    private List<String> menu;
+    public List<String> menu;
 
     // Getter for restaurantId
-    public String getId() {
-        return id;
+    public String getResturantId() {
+        return resturantId;
     }
 
     // Setter for restaurantId
-    public Restaurant setId(String id) {
-        this.id = id;
+    public Restaurant setResturantId(String resturantId) {
+        this.resturantId = resturantId;
         return this;
     }
 
     // Getter for name
-    public String getName() {
+    public String getResturantName() {
         return name;
     }
 
     // Setter for name
-    public Restaurant setName(String name) {
+    public Restaurant setResturantName(String name) {
         this.name = name;
         return this;
     }
@@ -63,13 +63,12 @@ public class Restaurant {
 
     // Getter for menu
     public List<String> getMenu() {
-        return menu;
+        return this.menu;
     }
 
     // Setter for menu
-    public Restaurant setMenu(List<String> menu) {
+    public void setMenu(List<String> menu) {
         this.menu = menu;
-        return this;
     }
 
 
@@ -77,7 +76,7 @@ public class Restaurant {
     // Overriding hashCode
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, address, menu);
+        return Objects.hash(resturantId, name, address, menu);
     }
 
     // Overriding equals
@@ -90,7 +89,7 @@ public class Restaurant {
             return false;
         }
         Restaurant restaurant = (Restaurant) obj;
-        return Objects.equals(id, restaurant.id) &&
+        return Objects.equals(resturantId, restaurant.resturantId) &&
                 Objects.equals(name, restaurant.name) &&
                 Objects.equals(address, restaurant.address) &&
                 Objects.equals(menu, restaurant.menu);
@@ -100,7 +99,7 @@ public class Restaurant {
     @Override
     public String toString() {
         return "Restaurant{" +
-                "id='" + id + '\'' +
+                "resturantId='" + resturantId + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", menu=" + menu +

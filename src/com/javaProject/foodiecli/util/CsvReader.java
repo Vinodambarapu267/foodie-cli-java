@@ -15,7 +15,7 @@ public class CsvReader {
     private List<Dish> dishesList;
 
     public List<Dish> readDishesFromCsv() {
-        String DISHES_CSV_PATH = "C:\\Users\\ambar\\OneDrive\\Desktop\\my folder\\JAVA\\foodie-cli-java\\data\\dishes.csv";
+        String DISHES_CSV_PATH = "C:\\Users\\ambar\\OneDrive\\Desktop\\food cli app\\foodie-cli-java\\data\\dishes.csv";
         String line;
         List<Dish> dishesList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(DISHES_CSV_PATH))) {
@@ -40,7 +40,7 @@ public class CsvReader {
     }
 
     public List<Customer> readCustomersFromCsv() {
-        String CUSTOMERS_CSV_PATH = "C:\\Users\\ambar\\OneDrive\\Desktop\\my folder\\JAVA\\foodie-cli-java\\data\\customers.csv";
+        String CUSTOMERS_CSV_PATH = "C:\\Users\\ambar\\OneDrive\\Desktop\\food cli app\\foodie-cli-java\\data\\customers.csv";
         String line;
         List<Customer> customersList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(CUSTOMERS_CSV_PATH))) {
@@ -64,7 +64,7 @@ public class CsvReader {
     }
 
     public List<Restaurant> readRestaurantsFromCsv() {
-        String RESTAURANTS_CSV_PATH = "C:\\Users\\ambar\\OneDrive\\Desktop\\my folder\\JAVA\\foodie-cli-java\\data\\restaurants.csv";
+        String RESTAURANTS_CSV_PATH = "C:\\Users\\ambar\\OneDrive\\Desktop\\food cli app\\foodie-cli-java\\data\\restaurants.csv";
         String line;
         List<Restaurant> restaurantsList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(RESTAURANTS_CSV_PATH))) {
@@ -74,8 +74,8 @@ public class CsvReader {
                 String[] data = line.split(cvsSplitBy);
                 Restaurant restaurant = new Restaurant();
 
-                restaurant.setId(data[0])
-                        .setName(data[1])
+                restaurant.setResturantId(data[0])
+                        .setResturantName(data[1])
                         .setAddress(data[2])
                         .setMenu(Arrays.asList(data[3].split(":")));
                 restaurantsList.add(restaurant);

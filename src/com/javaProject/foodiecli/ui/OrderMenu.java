@@ -68,7 +68,7 @@ public class OrderMenu extends Menu{
 
         ordersList.forEach(order -> {
             String dishNames = order.getDishList().stream().map(Dish::getDishName).collect(Collectors.joining(","));
-            System.out.printf("%-10s %-20s %-30s %-60s %-20s %-10s\n\n", order.getOrderid(), order.getCustomer().getCustomerName(), order.getRestaurant().getName(), dishNames, order.getOrderDate(), order.getTotalPrice());
+            System.out.printf("%-10s %-20s %-30s %-60s %-20s %-10s\n\n", order.getOrderid(), order.getCustomer().getCustomerName(), order.getRestaurant().getResturantName(), dishNames, order.getOrderDate(), order.getTotalPrice());
         });
         System.out.println("\n\n");
     }
@@ -93,7 +93,7 @@ public class OrderMenu extends Menu{
         displayMenuHeader("Order Details");
         System.out.printf("%-10s %-20s %-30s %-60s %-20s %-10s\n", "Id", "Customer Name", "Restaurant Name", "Items","Order Date","Price");
         printDashLine();
-        System.out.printf("%-10s %-20s %-30s %-60s %-20s %-10s\n\n", order.getOrderid(), order.getCustomer().getCustomerName(), order.getRestaurant().getName(), dishNames,order.getOrderDate(),String.format("$%.2f", order.getTotalPrice()));
+        System.out.printf("%-10s %-20s %-30s %-60s %-20s %-10s\n\n", order.getOrderid(), order.getCustomer().getCustomerName(), order.getRestaurant().getResturantName(), dishNames,order.getOrderDate(),String.format("$%.2f", order.getTotalPrice()));
 
 
     }
@@ -129,8 +129,8 @@ public class OrderMenu extends Menu{
                 restaurant = restaurantService.getRestaurantById(restaurantId);
             }
             char addMoreItems = 'Y';
-            while (addMoreItems == 'Y') {
-                new RestaurantsMenu().displayMenuItems(restaurant.getId());
+            while (addMoreItems == 'Y'|| addMoreItems == 'y') {
+                new RestaurantsMenu().displayMenuItems(restaurant.getResturantId());
                 printDashLine();
                 System.out.println("Enter the Dish Id (Ex : D001 )");
                 String dishId = scanner.nextLine();

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class RestaurantsRepository {
-    private List<Restaurant> restaurantList;
+   private final List<Restaurant> restaurantList;
 
     public RestaurantsRepository() {
         this.restaurantList = Factory.getCsvReader().readRestaurantsFromCsv();
@@ -20,14 +20,15 @@ public class RestaurantsRepository {
     public Restaurant save(Restaurant restaurant){ this.restaurantList.add(restaurant); return restaurant; }
 
     public Optional<Restaurant> findRestaurantById(String id) {
-        return this.restaurantList.stream().filter(restaurant -> restaurant.getId().equals(id)).findFirst();
+        return this.restaurantList.stream().filter(restaurant -> restaurant.getResturantId().equals(id)).findFirst();
     }
 
-    public Restaurant updateRetaurant(Restaurant restaurantToBeUpdated){
-        Optional<Restaurant> restaurantOptional = this.restaurantList.stream().filter(restaurant -> restaurant.getId().equals(restaurantToBeUpdated.getId()))
+    public Restaurant updateRestaurant(Restaurant restaurantToBeUpdated){
+        Optional<Restaurant> restaurantOptional = this.restaurantList.stream().filter(restaurant -> restaurant.getResturantId().equals(restaurantToBeUpdated.getResturantId()))
                 .findFirst()
                 .map(restaurant -> {
-                    restaurant.setName(restaurantToBeUpdated.getName())
+                    restaurant
+                            .setResturantName(restaurantToBeUpdated.getResturantName())
                             .setAddress(restaurantToBeUpdated.getAddress())
                             .setMenu(restaurantToBeUpdated.getMenu());
                     return restaurant;
